@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+table{
+    border-radius: 15px;
+    margin-top: 10px;
+    width: 100vw;
+}
+.container{
+    margin: auto;
+    padding: 15px;
+    width: 100vw;
+}
+body{
+    width: 100vw;
+    box-sizing: border-box;
+}
+td{
+    text-align: center;
+    vertical-align: middle;
+}
+th{
+    text-align: center;
+    vertical-align: middle;
+}
+nav>ul {
+    display: flex;
+    background-color: black;
+    list-style-type: none;
+    width: 100vw;
+}
+a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-family: arial, sans-serif;
+}
+a:hover {
+    background-color: gray;
+}
