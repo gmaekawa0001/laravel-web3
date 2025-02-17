@@ -1,0 +1,113 @@
+<!-- @extends('app')
+@section('content')
+<div class="container">
+  @foreach (['success', 'error', 'warning', 'info'] as $msg)
+    @if (session($msg))
+    <div class="alert alert-{{ $msg }}">
+    {{ session($msg) }}
+    </div>
+  @endif
+  @endforeach
+
+  <h1>Pilotos</h1>
+  <a href="novo-piloto" class="btn btn-primary my-3">Novo piloto</a>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Piloto</th>
+        <th scope="col">Numeração</th>
+        <th scope="col">Data nascimento</th>
+        <th scope="col">Equipe</th>
+        <th>Apagar</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <tbody>
+      @foreach ($pilotos as $piloto)
+      <tr>
+      <td>{{ $piloto->id }}</td>
+      <td>{{ $piloto->nome }}</td>
+      <td>{{ $piloto->numero }}</td>
+      <td>{{ $piloto->data_nasc }}</td>
+      <td>{{ $piloto->equipe->nome }}</td>
+      <td class="mx-auto">
+        <a class='btn btn-danger' href="{{ route('piloto.apagar', $piloto->id) }}">x</a>
+      </td>
+      <td class="mx-auto">
+        <a class='btn btn-primary' href="{{ route('piloto.editar', $piloto->id) }}">+</a>
+      </td>
+      </tr>
+    @endforeach
+    </tbody>
+    </tbody>
+  </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+@endsection -->
+
+<x-app-layout>
+
+<style>
+        td{
+            text-align: center;
+        }
+    </style>
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+      {{ __('Lista de Pilotos') }}
+    </h2>
+  </x-slot>
+
+  <div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900 dark:text-gray-100">
+        <form action="{{ route('piloto.novo') }}"><x-primary-button class="ms-3">
+                {{ __('Novo Piloto') }}
+            </x-primary-button></form>
+            <form action="{{ route('piloto.pdf') }}"><x-primary-button class="ms-3">
+                {{ __('Gerar PDF') }}
+            </x-primary-button></form>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Piloto</th>
+                <th scope="col">Numeração</th>
+                <th scope="col">Data nascimento</th>
+                <th scope="col">Equipe</th>
+                <th>Apagar</th>
+                <th>Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            <tbody>
+              @foreach ($pilotos as $piloto)
+              <tr>
+                <td>{{ $piloto->id }}</td>
+                <td>{{ $piloto->nome }}</td>
+                <td>{{ $piloto->numero }}</td>
+                <td>{{ $piloto->data_nasc }}</td>
+                <td>{{ $piloto->equipe->nome }}</td>
+                <td class="mx-auto">
+                  <a class='btn btn-danger' href="{{ route('piloto.apagar', $piloto->id) }}">x</a>
+                </td>
+                <td class="mx-auto">
+                  <a class='btn btn-primary' href="{{ route('piloto.editar', $piloto->id) }}">+</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-app-layout>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
